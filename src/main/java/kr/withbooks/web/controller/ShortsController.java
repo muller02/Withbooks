@@ -47,7 +47,7 @@ public class ShortsController {
 
 
         List<ShortsView> list = service.getView(bookId);
-        System.out.println(list);
+        // System.out.println(list);
 
 
         for (ShortsView view : list) {
@@ -102,6 +102,12 @@ public class ShortsController {
                 .build();
 
           service.add(item);   // 북쇼츠 내용 저장
+
+                System.out.println("사이즈 = "+files.size());
+                for(MultipartFile f : files){
+                    System.out.println("파일네임 = "+f.getOriginalFilename());
+
+                }
      
 
           Shorts shorts = Shorts.builder().bookId(bookId).content(content).userId(1L).build();
