@@ -1,21 +1,14 @@
+
+
 window.addEventListener("load", function(){
+
+    
     var formGroup = this.document.querySelector(".form-group");
     var imgInput = formGroup.querySelector(".img-input");
     var  previewPanel = formGroup.querySelector(".preview-panel");
-    // var btn=  this.document.querySelector("button['']")
-    // var tempFiles;
 
     var dataTransfer = new DataTransfer();
     
-
-    // this.document.querySelector("#btn").addEventListener("click", function(e){
-    //     e.preventDefault();
-    //     console.log("클릭", imgInput.files);
-    //     console.log("클릭", dataTransfer.files);
-    //     imgInput.files = dataTransfer.files;
-    //     console.log("클릭", imgInput.files);
-
-    // });
     
     imgInput.oninput = function(e){
         var files = imgInput.files;
