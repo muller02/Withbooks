@@ -33,6 +33,7 @@ public class BookController {
         Book book = service.get(id);
         model.addAttribute("book", book);
 
+        // 깃 클론 및 커밋  
         return "book/detail";
     }
 
