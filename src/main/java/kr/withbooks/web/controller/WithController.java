@@ -25,6 +25,7 @@ public class WithController {
         System.out.println("테스트");
         System.out.println("123ㄴ테스트");
         System.out.println("123ㄴ테스트");
+        System.out.println("재홍 테스트 2");
         return "/with/reg";
     }
 }
