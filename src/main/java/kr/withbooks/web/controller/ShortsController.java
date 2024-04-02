@@ -63,6 +63,9 @@ public class ShortsController {
                 view.setImg(imgList);
             }
         }
+
+
+
         model.addAttribute("list", list);
 
 
