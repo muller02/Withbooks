@@ -21,7 +21,13 @@ public class WithController {
 
     @GetMapping("list")  //자바스크립트에서 카테고리별 위드 목록을 출력하기 위한 api 컨트롤러
     public List<With> list(@RequestParam(name = "c", required = false) Long[] categoryId){
+        System.out.println("테스트");
+        System.out.println("테스트");
+        System.out.println("테스트");
+        System.out.println("테스트");
         return service.getList(categoryId);
+
+
     }
 
 
