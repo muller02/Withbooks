@@ -1,11 +1,10 @@
 package kr.withbooks.web.controller;
 
-import kr.withbooks.web.entity.Shorts;
-import kr.withbooks.web.entity.ShortsAttachment;
-import kr.withbooks.web.entity.ShortsView;
-import kr.withbooks.web.service.BookService;
-import kr.withbooks.web.service.ShortsAttachmentService;
-import kr.withbooks.web.service.ShrotsService;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,15 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.servlet.http.HttpServletRequest;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import kr.withbooks.web.entity.Shorts;
+import kr.withbooks.web.entity.ShortsAttachment;
+import kr.withbooks.web.entity.ShortsView;
+import kr.withbooks.web.service.BookService;
+import kr.withbooks.web.service.ShortsAttachmentService;
+import kr.withbooks.web.service.ShrotsService;
 
 @Controller
 @RequestMapping("shorts")
@@ -63,6 +59,9 @@ public class ShortsController {
                 view.setImg(imgList);
             }
         }
+
+
+
         model.addAttribute("list", list);
 
 
@@ -91,9 +90,10 @@ public class ShortsController {
 
     @PostMapping("reg")
     public String reg(@RequestParam(name = "text-area", required = false) String content
-            , @RequestParam(name = "files", required = false) List<MultipartFile> files
+            , @RequestParam(name = "files") List<MultipartFile> files
             , @RequestParam(required = false) Long bookId
             , HttpServletRequest request   ) throws IOException {
+
 
         Shorts item = Shorts.builder()
                 .bookId(bookId)
@@ -108,18 +108,19 @@ public class ShortsController {
                     System.out.println("파일네임 = "+f.getOriginalFilename());
 
                 }
-     
-
-          Shorts shorts = Shorts.builder().bookId(bookId).content(content).userId(1L).build();
-              service.add(shorts); //파일 db 첨부
-          Long shortsId = shorts.getId();
-
-
-          String fileName = null;
 
      
 
-          for(int i=0; i<files.size(); i++){
+        Shorts shorts = Shorts.builder().bookId(bookId).content(content).userId(1L).build();
+        service.add(shorts); //파일 db 첨부
+        Long shortsId = shorts.getId();
+
+
+        String fileName = null;
+
+     
+
+        for(int i=0; i<files.size(); i++){
 
             if (!files.get(i).isEmpty()) {
 
@@ -132,7 +133,7 @@ public class ShortsController {
                     file.mkdirs();              
 
                 File filePath = new File(realPath+File.separator+fileName);
-             
+                
                 files.get(i).transferTo(filePath);
                 
             
@@ -140,28 +141,10 @@ public class ShortsController {
                 //for문을 돌면서 다중 파일 이미지 이름을 db(shorts_attachment)에 저장
                 shortsAttachmentService.add(shortsAttachment);
             }
-          }
-
-
-
-
-
-
-
-
-   
-    
-       
-
-        // }
-
-
+        }
    
         return "redirect:/shorts/list";
 
     }
-
-
- 
 
 }
