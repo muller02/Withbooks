@@ -43,7 +43,7 @@ public class ShortsController {
 
 
         List<ShortsView> list = service.getView(bookId);
-        System.out.println(list);
+        // System.out.println(list);
 
 
         for (ShortsView view : list) {
@@ -59,6 +59,9 @@ public class ShortsController {
                 view.setImg(imgList);
             }
         }
+
+
+
         model.addAttribute("list", list);
 
 
@@ -87,9 +90,24 @@ public class ShortsController {
 
     @PostMapping("reg")
     public String reg(@RequestParam(name = "text-area", required = false) String content
-            , @RequestParam(name = "files", required = false) List<MultipartFile> files
+            , @RequestParam(name = "files") List<MultipartFile> files
             , @RequestParam(required = false) Long bookId
             , HttpServletRequest request   ) throws IOException {
+
+
+        Shorts item = Shorts.builder()
+                .bookId(bookId)
+                .userId(1L)
+                .content(content)
+                .build();
+
+          service.add(item);   // 북쇼츠 내용 저장
+
+                System.out.println("사이즈 = "+files.size());
+                for(MultipartFile f : files){
+                    System.out.println("파일네임 = "+f.getOriginalFilename());
+
+                }
 
      
 
