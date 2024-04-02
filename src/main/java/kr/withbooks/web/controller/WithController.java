@@ -21,6 +21,7 @@ public class WithController {
     @GetMapping("reg")
     public String reg(){
         System.out.println("테스트");
+        System.out.println("테스트");
         return "/with/reg";
     }
 }
