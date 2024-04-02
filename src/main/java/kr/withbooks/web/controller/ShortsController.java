@@ -91,7 +91,7 @@ public class ShortsController {
 
     @PostMapping("reg")
     public String reg(@RequestParam(name = "text-area", required = false) String content
-            , @RequestParam(name = "files", required = false) List<MultipartFile> files
+            , @RequestParam(name = "files") List<MultipartFile> files
             , @RequestParam(required = false) Long bookId
             , HttpServletRequest request   ) throws IOException {
 
