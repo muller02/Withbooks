@@ -23,6 +23,7 @@ public class WithController {
     public List<With> list(@RequestParam(name = "c", required = false) Long[] categoryId){
         System.out.println("테스트");
         System.out.println("테스트");
+        System.out.println("테스트");
         return service.getList(categoryId);
 
 
