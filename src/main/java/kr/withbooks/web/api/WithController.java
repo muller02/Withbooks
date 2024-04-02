@@ -24,6 +24,7 @@ public class WithController {
         System.out.println("테스트");
         System.out.println("테스트");
         System.out.println("테스트");
+        System.out.println("테스트");
         return service.getList(categoryId);
 
 
