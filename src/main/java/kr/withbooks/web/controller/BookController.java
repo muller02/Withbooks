@@ -31,6 +31,7 @@ public class BookController {
     @GetMapping("detail")
     public String detail(Model model, @RequestParam Long id) {
         Book book = service.get(id);
+        System.out.println("book = " + book);
         model.addAttribute("book", book);
 
         // 깃 클론 및 커밋  
