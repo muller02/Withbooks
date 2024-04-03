@@ -15,11 +15,6 @@ window.addEventListener("load", function(){
 
     var dataTransfer = new DataTransfer();
     
-    
-    imgInput.oninput = function(e){
-        var files = imgInput.files;
-
-        console.log("files = ",files);
 
 
     // 입력받은 이미지들을 처리(저장 및 img-panel에 이미지 추가)해주는 함수
