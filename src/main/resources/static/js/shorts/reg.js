@@ -1,10 +1,26 @@
+
+
 window.addEventListener("load", function(){
+
+    
     var formGroup = this.document.querySelector(".form-group");
     var imgInput = formGroup.querySelector(".img-input");
+
     var previewPanel = formGroup.querySelector(".preview-panel");
     var imgLabel = formGroup.querySelector(".img-label");
 
     var datatransfer = new DataTransfer();
+
+    var  previewPanel = formGroup.querySelector(".preview-panel");
+
+    var dataTransfer = new DataTransfer();
+    
+    
+    imgInput.oninput = function(e){
+        var files = imgInput.files;
+
+        console.log("files = ",files);
+
 
     // 입력받은 이미지들을 처리(저장 및 img-panel에 이미지 추가)해주는 함수
     function inputImgHandler(files){
