@@ -1,6 +1,6 @@
 window.addEventListener("load", function () {
 
-    var form = this.document.querySelector(".book-search-textbox");
+    var form = this.document.querySelector(".shorts-reg");
     var btn = form.querySelector("button");
     var input = form.querySelector("input");
     var bookContent = this.document.querySelector(".book-content");
@@ -35,10 +35,10 @@ window.addEventListener("load", function () {
 
                 //var book = list[0];
 
-                var sectionHTML = `    <a href="reg?b=${book.id}&n=${book.title}"><section class="d:flex h:2 ai:center item  ml:3 pl:3 ho">
+                var sectionHTML = `    <a href=""><section class="d:flex h:2 ai:center item  ml:3 pl:3 ho">
                 <h1 class="d:none">책 정보</h1>
                 <div class=" w:74  mr:5 ">
-                    <img src="${book.cover}" alt="도둑맞은 집중력" class="w:100p h:100p  border-radius:2">
+                    <img src="${book.cover}" alt="도둑맞은 집중력" class="h:100p border-radius:2">
                 </div>
                 <div class="d:flex jc:center flex-direction:column "> 
              
@@ -48,11 +48,13 @@ window.addEventListener("load", function () {
                     <div class="fs:2 color:base-7">${book.pubDate}</div>
                 </div>
         
-            </section></a>
+                </section></a>
                `;
 
                 bookContent.insertAdjacentHTML("beforeend", sectionHTML);
             }
+
+            bookContent.querySelector("a").onclick=function(e){e.preventDefault();};
 
 
         };
