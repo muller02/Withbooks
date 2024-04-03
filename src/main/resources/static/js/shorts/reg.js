@@ -1,7 +1,4 @@
-
-
 window.addEventListener("load", function(){
-
     
     var formGroup = this.document.querySelector(".form-group");
     var imgInput = formGroup.querySelector(".img-input");
@@ -12,14 +9,10 @@ window.addEventListener("load", function(){
     var datatransfer = new DataTransfer();
 
     var  previewPanel = formGroup.querySelector(".preview-panel");
-
-    var dataTransfer = new DataTransfer();
-    
-
-
+ 
     // 입력받은 이미지들을 처리(저장 및 img-panel에 이미지 추가)해주는 함수
     function inputImgHandler(files){
-        for(file of files){
+        for(var file of files){
             if(file.type.indexOf("image/")!=0){     
                 alert("이미지만 업로드 할 수 있습니다.");
                 return;
@@ -32,7 +25,7 @@ window.addEventListener("load", function(){
         }
     
         
-        for(file of files){
+        for(var file of files){
             datatransfer.items.add(file);
             imgInput.files = datatransfer.files;
     
