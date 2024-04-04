@@ -73,12 +73,12 @@ public class ShortsController {
 
 
 
-    @GetMapping("bookreg")
-    public String bookregForm(@RequestParam(name = "content", required = false) String content
-    ) {
+    // @GetMapping("bookreg")
+    // public String bookregForm(@RequestParam(name = "content", required = false) String content
+    // ) {
 
-        return "shorts/bookreg";
-    }
+    //     return "shorts/bookreg";
+    // }
 
     @GetMapping("reg")
     public String regForm(@RequestParam(name = "content", required = false) String content
@@ -91,30 +91,22 @@ public class ShortsController {
     @PostMapping("reg")
     public String reg(@RequestParam(name = "text-area", required = false) String content
             , @RequestParam(name = "files") List<MultipartFile> files
-            , @RequestParam(required = false) Long bookId
+            , @RequestParam(required = false , name = "book-id") Long bookId
             , HttpServletRequest request   ) throws IOException {
 
 
         Shorts item = Shorts.builder()
-                .bookId(bookId)
-                .userId(1L)
-                .content(content)
-                .build();
+                            .bookId(bookId)
+                            .userId(1L)
+                            .content(content)
+                            .build();
 
-          service.add(item);   // 북쇼츠 내용 저장
+        service.add(item);   // 북쇼츠 내용 저장
 
-                System.out.println("사이즈 = "+files.size());
-                for(MultipartFile f : files){
-                    System.out.println("파일네임 = "+f.getOriginalFilename());
-
-                }
-
-     
-
-        Shorts shorts = Shorts.builder().bookId(bookId).content(content).userId(1L).build();
-        service.add(shorts); //파일 db 첨부
-        Long shortsId = shorts.getId();
-
+        System.out.println("사이즈 = "+files.size());
+        for(MultipartFile f : files){
+            System.out.println("파일네임 = "+ f.getOriginalFilename());
+        }
 
         String fileName = null;
 
@@ -137,7 +129,7 @@ public class ShortsController {
                 files.get(i).transferTo(filePath);
                 
             
-                ShortsAttachment shortsAttachment = ShortsAttachment.builder().ShortsId(shorts.getId()).img(fileName).build();
+                ShortsAttachment shortsAttachment = ShortsAttachment.builder().ShortsId(item.getId()).img(fileName).build();
                 //for문을 돌면서 다중 파일 이미지 이름을 db(shorts_attachment)에 저장
                 shortsAttachmentService.add(shortsAttachment);
             }
